@@ -1,0 +1,243 @@
+{
+  "source_file": "olj4KTUo9B1546-1692687606_925469 - 00 GMC Renewal Policy 00.pdf",
+  "policy_metadata": {
+    "insurer_name": "Niva Bupa Health Insurance Company Limited",
+    "existing_tpa": null,
+    "policyholder_name": "Myndloop Tech Private Limited",
+    "policy_number": "00600900202301",
+    "inception_or_renewal_date": "01-August-2023",
+    "policy_end_date": "31-July-2024",
+    "policy_tenure": null,
+    "inception_premium": "83,454",
+    "family_structure": "Employee, Spouse and Kids",
+    "sum_insured_tiers": [
+      {
+        "sum_insured": "INR 5 Lakhs",
+        "applicable_to": null
+      }
+    ]
+  },
+  "demographics": {
+    "total_employees": 9,
+    "total_spouses": null,
+    "total_children": null,
+    "total_parents_or_parents_in_law": null,
+    "total_lives_covered": 20
+  },
+  "room_rent_hospitalization": {
+    "room_rent": {
+      "status": "Covered",
+      "limit": "1%",
+      "raw_text": "Normal 1%",
+      "source_page": 3
+    },
+    "icu_charges": {
+      "status": "Covered",
+      "limit": "2%",
+      "raw_text": "ICU 2%",
+      "source_page": 3
+    },
+    "pre_hospitalization_days": {
+      "status": "Covered",
+      "limit": "30 days",
+      "raw_text": "Pre Hospitalization Medical Expenses Covered upto Sum Insured for 30 days",
+      "source_page": 3
+    },
+    "post_hospitalization_days": {
+      "status": "Covered",
+      "limit": "60 days",
+      "raw_text": "Post Hospitalization Medical Expenses Covered upto Sum Insured for 60 days",
+      "source_page": 3
+    }
+  },
+  "maternity_details": {
+    "nine_month_waiting_period": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "baby_day_one_cover": {
+      "status": "Covered",
+      "limit": null,
+      "raw_text": "New born baby would be covered from the date of delivery provided we receive the endorsement within 90 days of delivery.",
+      "source_page": 3
+    },
+    "vaccination_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "normal_delivery_metro": {
+      "status": "Covered",
+      "limit": "25,000",
+      "raw_text": "Normal 25,000",
+      "source_page": 3
+    },
+    "normal_delivery_non_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "c_section_metro": {
+      "status": "Covered",
+      "limit": "35,000",
+      "raw_text": "C-Section 35,000",
+      "source_page": 3
+    },
+    "c_section_non_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "waiting_periods": {
+    "thirty_day_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "Initial Waiting Period Waived Off",
+      "source_page": 3
+    },
+    "first_year_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "2 yr exclusions (Disease Specific Exclusions) Waived Off",
+      "source_page": 3
+    },
+    "second_year_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "2 yr exclusions (Disease Specific Exclusions) Waived Off",
+      "source_page": 3
+    },
+    "pre_existing_diseases": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "Pre-Existing Disease (PED) Waived Off",
+      "source_page": 3
+    }
+  },
+  "specific_benefits": {
+    "day_care_expenses": {
+      "status": "Covered",
+      "limit": "upto Sum Insured",
+      "raw_text": "Listed Day Care Treatment Covered upto Sum Insured",
+      "source_page": 3
+    },
+    "opd_benefit": {
+      "status": "Not Covered",
+      "limit": null,
+      "raw_text": "OPD Coverage Not Covered",
+      "source_page": 3
+    },
+    "teleconsultation": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "pharmacy_discount": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "domiciliary_hospitalization": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "annual_health_checkup": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "modern_treatment": {
+      "status": "Covered",
+      "limit": "50% co-pay",
+      "raw_text": "50% co-pay For cyberknife treatment/Robotic Surgery/Bio-absorbable Stent/FAMETO Laser Surgery/Toric lens/KT Laser Prostate.",
+      "source_page": 3
+    },
+    "bariatric_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "psychiatric_treatment": {
+      "status": "Covered",
+      "limit": null,
+      "raw_text": "Psychiatric Ailments / Functional Endoscopic Sinus Surgery / Mental illness covered",
+      "source_page": 3
+    },
+    "ayush_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "lgbtq_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "live_in_partners": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "organ_donor_expenses": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "infertility_and_ambulance": {
+    "infertility_treatment_surrogacy": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "ambulance_charges": {
+      "status": "Covered",
+      "limit": "INR 1000 per hospitalization",
+      "raw_text": "Emergency Ambulance INR 1000 per hospitalization",
+      "source_page": 3
+    },
+    "air_ambulance_charges": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "buffer_and_waiver": {
+    "corporate_buffer_disease_wise_capping": {
+      "status": "Applied",
+      "limit": "Hemorrhoidectomy including Cost of stapler- 40000, Hemorrhoidectomy and Fissurectomy in a single sitting-35000, Cholecystectomy- 35000, Hernioplasty/Herniorraphy- Unilateral including cost of mesh and tacker- 45000, Hernioplasty/Herniorraphy- Bilateral including Cost of mesh and tacker-50000, URS (therapeutic) Including cost of laser treatment-35000, PCNL- Unilateral-50000, PCNL- Bilateral-60000, Hydrocele-25000,Appendicectomy-45000, Cataract per eye including Cost of Lens-25000, Hysterectomy (Abdominal/Vaginal)-55000, Total Knee Replacement(Unilateral) including cost of implants-100000, Total Knee Replacement (Bilateral) including cost of implants-150000, Hip Replacement (Unilateral) including cost of implants-100000, Hip Replacement (Bilateral) including cost of implants-150000",
+      "raw_text": "Disease wise capping Hemorrhoidectomy including Cost of stapler- 40000, Hemorrhoidectomy and Fissurectomy in a single sitting-35000, Cholecystectomy- 35000, Hernioplasty/Herniorraphy- Unilateral including cost of mesh and tacker- 45000, Hernioplasty/Herniorraphy- Bilateral including Cost of mesh and tacker-50000, URS (therapeutic) Including cost of laser treatment-35000, PCNL- Unilateral-50000, PCNL- Bilateral-60000, Hydrocele-25000,Appendicectomy-45000, Cataract per eye including Cost of Lens-25000, Hysterectomy (Abdominal/Vaginal)-55000, Total Knee Replacement(Unilateral) including cost of implants-100000, Total Knee Replacement (Bilateral) including cost of implants-150000, Hip Replacement (Unilateral) including cost of implants-100000, Hip Replacement (Bilateral) including cost of implants-150000",
+      "source_page": 3
+    }
+  },
+  "extraction_meta": {
+    "engine": "llm",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "engine_used": "gemini",
+    "page_count": 6,
+    "ocr_pages": 0,
+    "elapsed_seconds": 21.88,
+    "llm_error": null,
+    "note": null,
+    "benefit_fields_filled": "17/32"
+  }
+}

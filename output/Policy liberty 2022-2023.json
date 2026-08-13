@@ -1,0 +1,234 @@
+{
+  "source_file": "Policy liberty 2022-2023.pdf",
+  "policy_metadata": {
+    "insurer_name": "Liberty General Insurance",
+    "existing_tpa": null,
+    "policyholder_name": null,
+    "policy_number": "4112-200101-22-7001375-00-000",
+    "inception_or_renewal_date": null,
+    "policy_end_date": null,
+    "policy_tenure": null,
+    "inception_premium": "9600.00",
+    "family_structure": null,
+    "sum_insured_tiers": []
+  },
+  "demographics": {
+    "total_employees": null,
+    "total_spouses": null,
+    "total_children": null,
+    "total_parents_or_parents_in_law": null,
+    "total_lives_covered": null
+  },
+  "room_rent_hospitalization": {
+    "room_rent": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "icu_charges": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "pre_hospitalization_days": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "post_hospitalization_days": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "maternity_details": {
+    "nine_month_waiting_period": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "baby_day_one_cover": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "vaccination_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "normal_delivery_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "normal_delivery_non_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "c_section_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "c_section_non_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "waiting_periods": {
+    "thirty_day_waiting_period": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "first_year_waiting_period": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "second_year_waiting_period": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "pre_existing_diseases": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "specific_benefits": {
+    "day_care_expenses": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "opd_benefit": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "teleconsultation": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "pharmacy_discount": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "domiciliary_hospitalization": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "annual_health_checkup": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "modern_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "bariatric_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "psychiatric_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "ayush_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "lgbtq_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "live_in_partners": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "organ_donor_expenses": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "infertility_and_ambulance": {
+    "infertility_treatment_surrogacy": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "ambulance_charges": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "air_ambulance_charges": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "buffer_and_waiver": {
+    "corporate_buffer_disease_wise_capping": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "extraction_meta": {
+    "engine": "rules",
+    "note": "No LLM API key was configured, or this is a cross-check pass. Only high-confidence, consistently-labeled fields (insurer, TPA, policy number, dates, premium) are populated by the rules engine — benefit/waiting-period fields require the LLM pass and are left null here.",
+    "engine_used": "rules",
+    "page_count": 3,
+    "ocr_pages": 0,
+    "elapsed_seconds": 0.95
+  }
+}

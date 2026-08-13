@@ -1,0 +1,255 @@
+{
+  "source_file": "GHI Policy.pdf",
+  "policy_metadata": {
+    "insurer_name": "Care Health Insurance Limited",
+    "existing_tpa": null,
+    "policyholder_name": "MUKUNDA FOODS PVT LTD",
+    "policy_number": "39899400",
+    "inception_or_renewal_date": "17-Mar-2022",
+    "policy_end_date": "16-Mar-2023",
+    "policy_tenure": null,
+    "inception_premium": "` 544,804",
+    "family_structure": "Self + Spouse + 4 Dependent children",
+    "sum_insured_tiers": [
+      {
+        "sum_insured": "` 17,200,000",
+        "applicable_to": null
+      },
+      {
+        "sum_insured": "Rs. 200,000",
+        "applicable_to": null
+      },
+      {
+        "sum_insured": "No Limit",
+        "applicable_to": null
+      },
+      {
+        "sum_insured": "Upto Family SI",
+        "applicable_to": null
+      }
+    ]
+  },
+  "demographics": {
+    "total_employees": 86,
+    "total_spouses": null,
+    "total_children": 66,
+    "total_parents_or_parents_in_law": null,
+    "total_lives_covered": 152
+  },
+  "room_rent_hospitalization": {
+    "room_rent": {
+      "status": "Covered",
+      "limit": "Flat Sum insured",
+      "raw_text": "In-patient Care Flat Sum insured Room Rent Sum Insured Maximum eligibility for Normal Hospitalization Maximum eligibility for ICU Hospitalization Rs. 200,000 No Limit No Limit",
+      "source_page": 2
+    },
+    "icu_charges": {
+      "status": "Covered",
+      "limit": "No Limit",
+      "raw_text": "ICU Hospitalization No Limit",
+      "source_page": 2
+    },
+    "pre_hospitalization_days": {
+      "status": "Covered",
+      "limit": "30 days",
+      "raw_text": "Pre & Post Hospitalization is covered for 30 days and 60 days respectively.",
+      "source_page": 2
+    },
+    "post_hospitalization_days": {
+      "status": "Covered",
+      "limit": "60 days",
+      "raw_text": "Pre & Post Hospitalization is covered for 30 days and 60 days respectively.",
+      "source_page": 2
+    }
+  },
+  "maternity_details": {
+    "nine_month_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "9 month waiting period in respect of maternity claims waived for all Insured Members.",
+      "source_page": 2
+    },
+    "baby_day_one_cover": {
+      "status": "Covered",
+      "limit": "within family floater Sum Insured applicable to the Employee",
+      "raw_text": "New Born Baby covered from day one within family floater Sum Insured applicable to the Employee.",
+      "source_page": 2
+    },
+    "vaccination_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "normal_delivery_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "normal_delivery_non_metro": {
+      "status": "Covered",
+      "limit": "Rs. 75,000",
+      "raw_text": "Maximum Limit for Maternity claims is Rs. 75,000 for Normal and Rs. 75,000 for LSCS .",
+      "source_page": 2
+    },
+    "c_section_metro": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "c_section_non_metro": {
+      "status": "Covered",
+      "limit": "Rs. 75,000",
+      "raw_text": "Maximum Limit for Maternity claims is Rs. 75,000 for Normal and Rs. 75,000 for LSCS .",
+      "source_page": 2
+    }
+  },
+  "waiting_periods": {
+    "thirty_day_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "30 Days Wait Period condition is waived off for existing members and new joinees.",
+      "source_page": 2
+    },
+    "first_year_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "First & Second year exclusion condition for specific diseases is waived off for all Insured Members.",
+      "source_page": 2
+    },
+    "second_year_waiting_period": {
+      "status": "Waived Off",
+      "limit": null,
+      "raw_text": "First & Second year exclusion condition for specific diseases is waived off for all Insured Members.",
+      "source_page": 2
+    },
+    "pre_existing_diseases": {
+      "status": "Covered",
+      "limit": null,
+      "raw_text": "Pre-existing diseases are covered for existing members and new joinees.",
+      "source_page": 2
+    }
+  },
+  "specific_benefits": {
+    "day_care_expenses": {
+      "status": "Covered",
+      "limit": null,
+      "raw_text": "Day Care Treatment : List of Day Care procedure attached as “Annexure A under Know your policy Better”",
+      "source_page": 2
+    },
+    "opd_benefit": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "teleconsultation": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "pharmacy_discount": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "domiciliary_hospitalization": {
+      "status": "Not Covered",
+      "limit": null,
+      "raw_text": "Domiciliary Hospitalization is specifically excluded.",
+      "source_page": 3
+    },
+    "annual_health_checkup": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "modern_treatment": {
+      "status": "Covered",
+      "limit": "50% of the Sum Insured",
+      "raw_text": "Modern treatments, psychiatric treatments and Bariatric Surgery covered under the policy as per terms and conditions upto 50% of the Sum Insured.",
+      "source_page": 2
+    },
+    "bariatric_treatment": {
+      "status": "Covered",
+      "limit": "50% of the Sum Insured",
+      "raw_text": "Modern treatments, psychiatric treatments and Bariatric Surgery covered under the policy as per terms and conditions upto 50% of the Sum Insured.",
+      "source_page": 2
+    },
+    "psychiatric_treatment": {
+      "status": "Covered",
+      "limit": "50% of the Sum Insured",
+      "raw_text": "Modern treatments, psychiatric treatments and Bariatric Surgery covered under the policy as per terms and conditions upto 50% of the Sum Insured.",
+      "source_page": 2
+    },
+    "ayush_treatment": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "lgbtq_coverage": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "live_in_partners": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    },
+    "organ_donor_expenses": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "infertility_and_ambulance": {
+    "infertility_treatment_surrogacy": {
+      "status": "Not Covered",
+      "limit": null,
+      "raw_text": "Infertility & related ailments including male sterility , treatment on trial /experimental basis; expenses on fitting of prosthesis (any device /instrument/contributing machine/replacing the functions of an organ) holter monitoring are outside the scope of this policy.",
+      "source_page": 4
+    },
+    "ambulance_charges": {
+      "status": "Covered",
+      "limit": "Rs. 1,000/- per claim",
+      "raw_text": "Ambulance charges payable up to a maximum amount of Rs. 1,000/- per claim.",
+      "source_page": 2
+    },
+    "air_ambulance_charges": {
+      "status": null,
+      "limit": null,
+      "raw_text": null,
+      "source_page": null
+    }
+  },
+  "buffer_and_waiver": {
+    "corporate_buffer_disease_wise_capping": {
+      "status": "Covered",
+      "limit": "Rs. 5 LAKH",
+      "raw_text": "Our Aggregate Liability in respect of all such claims under Corporate Floater shall not exceed Rs. 5 LAKH for all the Insured members as applicable during the period of insurance.",
+      "source_page": 3
+    }
+  },
+  "extraction_meta": {
+    "engine": "llm",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "engine_used": "gemini",
+    "page_count": 4,
+    "ocr_pages": 0,
+    "elapsed_seconds": 20.8,
+    "llm_error": null,
+    "note": null,
+    "benefit_fields_filled": "20/32"
+  }
+}

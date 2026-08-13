@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMC Policy Ledger — Extraction Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="mark">
+      <span class="mark-glyph">§</span>
+    </div>
+    <div class="mast-text">
+      <h1>GMC Policy Ledger</h1>
+      <p class="mast-sub">Multi-insurer extraction console — every value traced to its clause</p>
+    </div>
+    <div class="key-control">
+      <div class="key-block">
+        <label for="gemini-key-input">Gemini API key <span class="key-hint">(free tier)</span></label>
+        <div class="key-row">
+          <input id="gemini-key-input" type="password" placeholder="AIza… (session only, never saved to disk)" autocomplete="off">
+          <button id="gemini-key-btn" class="btn-ghost">Use</button>
+        </div>
+      </div>
+      <div class="key-block">
+        <label for="anthropic-key-input">Anthropic API key <span class="key-hint">(paid)</span></label>
+        <div class="key-row">
+          <input id="anthropic-key-input" type="password" placeholder="sk-ant-… (session only, never saved to disk)" autocomplete="off">
+          <button id="anthropic-key-btn" class="btn-ghost">Use</button>
+        </div>
+      </div>
+      <span id="key-status" class="key-status">checking key status…</span>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="intake" id="intake">
+    <div class="intake-inner">
+      <div id="dropzone" class="dropzone">
+        <div class="dropzone-glyph">⇩</div>
+        <p class="dropzone-title">Drop a GMC policy PDF</p>
+        <p class="dropzone-sub">or <label for="file-input" class="file-label">browse a file</label></p>
+        <input id="file-input" type="file" accept="application/pdf" hidden>
+      </div>
+      <div id="processing" class="processing hidden">
+        <div class="spinner"></div>
+        <p id="processing-label">Reading pages…</p>
+      </div>
+      <div id="intake-error" class="intake-error hidden"></div>
+    </div>
+
+    <div class="ledger-index">
+      <div class="ledger-index-head">
+        <span>Processed files</span>
+        <button id="refresh-btn" class="btn-icon" title="Refresh list">⟳</button>
+      </div>
+      <ul id="file-list" class="file-list">
+        <li class="file-list-empty">No files processed yet.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="detail" id="detail">
+    <div class="detail-placeholder" id="detail-placeholder">
+      <p>Select a processed file, or upload a new one, to open its ledger.</p>
+    </div>
+    <div class="detail-content hidden" id="detail-content"></div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>GMC Policy Extraction &amp; QMS Integration — Technical Assessment build</span>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
