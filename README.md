@@ -4,6 +4,12 @@ PDFs — issued by different insurers, in different layouts — and maps it into
 single normalized JSON schema matching the QMS field list in the assignment
 brief.
 
+## 🔗 Live Demo
+[https://gmc-extractor.onrender.com/](https://gmc-extractor.onrender.com/)
+
+<img width="1868" height="915" alt="image" src="https://github.com/user-attachments/assets/b5ef7975-e5d8-41eb-be08-9d43e67df70a" />
+<img width="1863" height="912" alt="image" src="https://github.com/user-attachments/assets/fd9d01ec-3b03-4a5b-b17e-9d1e7f4efc33" />
+
 ## What it does
 ```
 PDF (any insurer, any layout)
