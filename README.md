@@ -229,7 +229,7 @@ source" principle used throughout this schema.
   benefit, permanent disability %, etc.) get their own schema instead of
   being force-fit into the GMC one.
 
-## Project structure
+
 
 ## Project structure
 
