@@ -8,31 +8,37 @@ single normalized JSON schema matching the QMS field list in the assignment
 brief.
 
 ## What it does
-
 ```
 PDF (any insurer, any layout)
-   │
-   ▼
-1. pdf_extractor.py   — text + table extraction per page (pdfplumber),
-                         OCR fallback per-page for scanned pages (PyMuPDF + tesseract)
-   │
-   ▼
-2. llm_extractor.py   — Claude (tool-use, forced structured output) reads the
-                         full page-tagged text and maps every QMS field, with
-                         a source clause + page number attached to each value
-   │  (falls back to↓ if no API key is configured)
-   ▼
-3. rules_extractor.py — regex-based extraction of the handful of fields that
-                         are reliably labeled across insurers (insurer name,
-                         TPA, policy number, dates, premium) — guarantees the
-                         pipeline still produces output with zero API cost/key
-   │
-   ▼
-4. schema.py           — pydantic model enforced on every output, so the JSON
-                          shape never varies file-to-file regardless of source
-                          insurer or which engine produced it
-   │
-   ▼
+│
+▼
+
+pdf_extractor.py — text + table extraction per page (pdfplumber),
+OCR fallback per-page for scanned pages (PyMuPDF + tesseract)
+│
+▼
+gemini_extractor.py — Gemini (free tier) reads the full page-tagged text
+or llm_extractor.py and maps every QMS field, with a source clause + page
+(Anthropic, paid) number attached to each value. Auto-selects whichever
+API key is available (Gemini preferred, it's free).
+│ (falls back to↓ if no API key is configured)
+▼
+rules_extractor.py — regex-based extraction of the handful of fields that
+are reliably labeled across insurers (insurer name,
+TPA, policy number, dates, premium) — guarantees the
+pipeline still produces output with zero API cost/key
+│
+▼
+schema.py — pydantic model enforced on every output, so the JSON
+shape never varies file-to-file regardless of source
+insurer or which engine produced it
+│
+▼
+enrichment.py — post-processing pass that fills in derivable fields
+(e.g. policy_tenure computed from start/end dates)
+when the document doesn't state them explicitly
+│
+▼
 output/<filename>.json
 ```
 
@@ -52,10 +58,23 @@ field, and breaks the moment a sixth insurer's template shows up — exactly the
 "rigid, single-insurer template" problem the assignment explicitly says to
 avoid. An LLM reading the full extracted text (including flattened tables)
 generalizes across phrasing the way a human policy analyst would, which is why
-the extraction core is Claude with **forced tool-use** against the same
-pydantic schema (`schema.py`) that defines the JSON output — this guarantees
-every response is valid, schema-conformant JSON rather than free-text that
-needs a second parsing pass.
+the extraction core forces structured output against the same pydantic schema
+(`schema.py`) that defines the JSON output — this guarantees every response is
+valid, schema-conformant JSON rather than free-text that needs a second parsing
+pass.
+
+**Two LLM providers are supported, with automatic selection.** Anthropic's
+Claude uses forced tool-use for provider-side constrained decoding. Google's
+Gemini is used as the default/preferred engine specifically because it's
+available on a **free tier with no credit card required** — see
+`gemini_extractor.py`'s docstring for a real platform limitation this project
+ran into and worked around: Gemini's `response_schema` constrained-decoding
+mode rejects this schema outright (`400 INVALID_ARGUMENT: ... too many states
+for serving`, a hard limit given schema.GMCExtraction's ~40 repeated nested
+objects). The fix was to request free-form JSON instead, show the model an
+exact empty-shape example in the prompt, and validate the response against
+the same pydantic model client-side — enforcing the schema guarantee outside
+the API rather than relying on Gemini's built-in constraint.
 
 **Every extracted benefit field carries its source clause and page number**
 (`raw_text`, `source_page` on every `CoverageField`). This directly targets the
@@ -85,9 +104,19 @@ sudo apt-get install tesseract-ocr poppler-utils
 # Python dependencies
 pip install -r requirements.txt
 
-# Enable full LLM extraction (recommended — see "Running without an API key" below)
+# Enable full LLM extraction — pick ONE:
+
+# Option A (free, no credit card) — Google AI Studio
+#   Get a key at https://aistudio.google.com -> "Get API key"
+export GEMINI_API_KEY=AIza...
+
+# Option B (paid) — Anthropic
+#   Get a key at https://console.anthropic.com -> API Keys
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
+
+If both are set, the pipeline prefers Gemini by default (`--provider auto`, the
+default) since it's free-tier; pass `--provider anthropic` to force Claude instead.
 
 ## Running (CLI)
 
@@ -96,17 +125,22 @@ cd src
 python main.py --input ../samples --output ../output
 ```
 
+- `--provider auto` (default) picks Gemini if `GEMINI_API_KEY`/`GOOGLE_API_KEY`
+  is set, else Anthropic if `ANTHROPIC_API_KEY` is set, else falls back to
+  rules-only.
+- Force a specific engine with `--provider gemini`, `--provider anthropic`, or
+  `--provider rules`.
 - `--input` accepts either a single PDF or a directory of PDFs.
 - One JSON file is written per input PDF, plus a `_run_summary.json` listing
   which engine ran on each file and whether it succeeded.
 
 ### Running without an API key
 
-If `ANTHROPIC_API_KEY` isn't set, the pipeline automatically runs in
-rules-only mode (`--no-llm` also forces this explicitly) — every file still
-produces valid schema-shaped JSON, with `policy_metadata` populated
-(insurer, TPA, policy number, dates, premium where present) and benefit
-fields left `null`, clearly flagged via `extraction_meta.engine_used`.
+If no key is set, the pipeline automatically runs in rules-only mode
+(`--provider rules` also forces this explicitly) — every file still produces
+valid schema-shaped JSON, with `policy_metadata` populated (insurer, TPA,
+policy number, dates, premium where present) and benefit fields left `null`,
+clearly flagged via `extraction_meta.engine_used`.
 
 ## Running (Web UI)
 
@@ -123,49 +157,103 @@ python app.py
 
 Then open **http://localhost:5000**.
 
-- If `ANTHROPIC_API_KEY` is already set in your environment, uploads run
-  full LLM extraction automatically.
-- Otherwise, paste a key into the "Anthropic API key" field in the top
-  bar and click **Use key** — it's held in server memory for that run only
-  and is never written to disk.
+- If `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` is already set in your environment,
+  uploads run full LLM extraction automatically (Gemini preferred if both are set).
+- Otherwise, paste a key into the **Gemini** field (free, no card) or the
+  **Anthropic** field (paid) in the top bar and click **Use** — it's held in
+  server memory for that run only and is never written to disk.
 - Previously processed files (including ones run via the CLI into
   `output/`) show up automatically in the left-hand file list.
 
+## Post-extraction enrichment
+
+`src/enrichment.py` runs after every extraction (regardless of which engine
+produced it) and fills in `policy_tenure` from `inception_or_renewal_date` /
+`policy_end_date` when the document states a start/end date but never spells
+out the tenure explicitly — common across the sample set, where policies
+give exact dates and leave the reader to work out it's "1 Year(s)". It only
+fills the field when it's genuinely empty; a tenure the model actually found
+stated in the text is never overwritten. The computed value is labeled
+`"1 Year(s) (computed from 02-Apr-2022 → 01-Apr-2023)"` rather than a bare
+`"1 Year(s)"`, so a reviewer can immediately tell it was derived, not
+extracted verbatim — keeping with the "trace every value back to its
+source" principle used throughout this schema.
+
 ## Known scaling points (not implemented in this v1, called out intentionally)
 
+- **Gemini's `response_schema` constrained-decoding mode cannot be used directly
+  with this schema.** `schema.GMCExtraction` has ~40 repeated nested
+  `CoverageField` objects; passing it as Gemini's `response_schema` throws
+  `400 INVALID_ARGUMENT: ... too many states for serving` — a hard limit in
+  Gemini's schema compiler, not something tunable via token limits or field
+  descriptions. `gemini_extractor.py` works around this by requesting
+  free-form JSON (`response_mime_type="application/json"` with no
+  `response_schema`) and showing the model an exact empty-shape example of
+  the target JSON in the prompt instead — the response is then validated
+  against the same pydantic model used everywhere else, so the guarantee of
+  schema-conformant output is enforced on the client side rather than by the
+  API. Anthropic's tool-use path doesn't hit this limit and still uses
+  provider-side constrained decoding.
 - **Chunking for very long documents.** The LLM call currently sends the
   full document text in a single request. This comfortably fits an 80-page
-  policy in Claude's context window, so it wasn't built for v1 — but a
-  production version processing hundreds of policies per batch would want a
-  page-window chunking + merge strategy to control per-call token cost.
+  policy in context, so it wasn't built for v1 — but a production version
+  processing hundreds of policies per batch would want a page-window
+  chunking + merge strategy to control per-call token cost.
 - **Cross-check scoring.** `rules_extractor.py`'s output is currently a
   standalone fallback path rather than being diffed against the LLM pass
   automatically; wiring the two together into an agreement/confidence score
   per field would strengthen the "Accuracy" evaluation story further.
-- **Multi-document policies.** Some GMC packs bundle a personal-accident
-  rider PDF alongside the base GMC schedule (as in the sample set). This
-  version processes each PDF independently; a production version would
-  likely want an explicit "which PDF is the base GMC vs. a rider" classification
-  step before merging results per employer.
+- **Metro / Non-Metro delivery labeling is sometimes an assumption, not a
+  fact.** Several sample policies state a single flat maternity limit for
+  "Normal Delivery" and "C-Section" with no metro/non-metro distinction in
+  the source text at all. When that happens, the model has to place the
+  value into one of the two schema slots (metro or non-metro) since the
+  document doesn't say — and it has been observed to pick differently across
+  documents (e.g. non-metro in one Care Health policy, metro in a Niva Bupa
+  policy) purely because the source gives no signal either way. The rupee
+  values extracted in these cases are accurate; only the metro/non-metro
+  bucket assignment is an unavoidable guess when the source doesn't
+  distinguish. A production version might instead leave both slots populated
+  with the same value plus a flag noting "source does not distinguish
+  metro/non-metro," rather than picking one.
+- **Multi-document policies / non-GMC products in the same batch.** The
+  provided sample set includes `Net Catalyst - GPA - Policy Copy - 2022-23.pdf`,
+  which is a **Group Personal Accident (GPA)** policy, not GMC — verified by
+  reading the document itself ("LIBERTY GROUP PERSONAL ACCIDENT POLICY"). GPA
+  covers accidental death/disability payouts and has no room rent, ICU,
+  maternity, or waiting-period clauses at all, so the pipeline correctly
+  extracts the metadata it can (insurer, premium, employee count, capital sum
+  insured) and leaves every GMC-specific benefit field null rather than
+  fabricating values for a product category that doesn't have them — this is
+  intended behavior, not a missed extraction. A production version processing
+  a full employer's insurance pack (which often bundles a GPA rider alongside
+  the base GMC policy) would likely want an explicit document-type
+  classification step up front, so GPA-specific fields (accidental death
+  benefit, permanent disability %, etc.) get their own schema instead of
+  being force-fit into the GMC one.
+
+## Project structure
 
 ## Project structure
 
 ```
 gmc-extractor/
 ├── src/
-│   ├── schema.py           # pydantic output schema (QMS field mapping)
-│   ├── pdf_extractor.py    # text/table extraction + OCR fallback
-│   ├── llm_extractor.py    # Claude tool-use structured extraction
-│   ├── rules_extractor.py  # zero-API-key regex fallback
-│   └── main.py             # CLI entrypoint
+│ ├── schema.py # pydantic output schema (QMS field mapping)
+│ ├── pdf_extractor.py # text/table extraction + OCR fallback
+│ ├── llm_extractor.py # Claude tool-use structured extraction
+│ ├── gemini_extractor.py # Gemini structured extraction (free-tier default)
+│ ├── rules_extractor.py # zero-API-key regex fallback
+│ ├── enrichment.py # post-extraction derived-field fill-ins (e.g. policy tenure)
+│ └── main.py # CLI entrypoint
 ├── webapp/
-│   ├── app.py               # Flask backend (wraps src/ pipeline)
-│   ├── templates/index.html
-│   ├── static/style.css
-│   ├── static/app.js
-│   └── uploads/             # PDFs uploaded via the UI land here
-├── samples/                # provided sample GMC policy PDFs
-├── output/                 # generated JSON per PDF (+ run summary) — read by both CLI and UI
+│ ├── app.py # Flask backend (wraps src/ pipeline)
+│ ├── templates/index.html
+│ ├── static/style.css
+│ ├── static/app.js
+│ └── uploads/ # PDFs uploaded via the UI land here
+├── samples/ # provided sample GMC policy PDFs
+├── output/ # generated JSON per PDF (+ run summary) — read by both CLI and UI
 ├── requirements.txt
 └── README.md
 ```
