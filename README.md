@@ -1,7 +1,4 @@
 # GMC Policy Extraction & QMS Integration
-
-Technical Assessment — AI/LLM Engineering Intern (Document Intelligence), PlanCover.
-
 Extracts structured policy data from Group Medical Cover (GMC) insurance policy
 PDFs — issued by different insurers, in different layouts — and maps it into a
 single normalized JSON schema matching the QMS field list in the assignment
